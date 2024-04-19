@@ -105,7 +105,7 @@ def get_poem(query: str):
     except:
         log_data = {"query": query, "output": output}
         logger.error(json.dumps(log_data))
-        return "<div><p>Sorry, there was an error in generating the poem.</p></div>"
+        return HTMLResponse(content="<div><p>Sorry, there was an error in generating the poem.</p></div>", media_type="text/html")
 
     # Return the PDF file as a response
     return FileResponse(pdf_file, filename=f"{query}.pdf", media_type="application/pdf")
@@ -123,12 +123,14 @@ def get_poem(request: schemas.Load):
         html_output += "</div>"
         log_data = {"query": query, "output": output}
         logger.info(json.dumps(log_data))
+        result = {"html_output": html_output, "query": query, "output": output}
+        
     except:
         html_output = "<div><p>Sorry, there was an error in generating the poem.</p></div>"
         log_data = {"query": query, "output": output}
         logger.error(json.dumps(log_data))
+        result = {"html_output": html_output, "query": query, "output": ""}
 
-    result = {"html_output": html_output, "query": query, "output": output}
     # Return the HTML as a response
     return result
 
@@ -150,10 +152,11 @@ def get_poem(request: schemas.Pdf):
         c.save()
         log_data = {"query": query, "output": output}
         logger.info(json.dumps(log_data))
+        
     except:
         log_data = {"query": query, "output": output}
         logger.error(json.dumps(log_data))
-        return "<div><p>Sorry, there was an error in generating the pdf.</p></div>"
+        return HTMLResponse(content="<div><p>Sorry, there was an error in generating the pdf.</p></div>", media_type="text/html")
 
     # Return the PDF file as a response
     return FileResponse(pdf_file, filename=f"{query}.pdf", media_type="application/pdf")
