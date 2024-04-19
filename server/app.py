@@ -3,7 +3,7 @@ from fastapi import FastAPI
 import uvicorn
 from fastapi.middleware.cors import CORSMiddleware
 import logging
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, HTMLResponse
 from reportlab.pdfgen import canvas
 import json
 import os
