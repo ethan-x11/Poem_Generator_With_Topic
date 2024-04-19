@@ -48,11 +48,11 @@ def get_poem(query: str):
     logging.info(json.dumps(log_data))
     logging.info("\n")
     # Convert the output data to proper HTML format
-    html_output = "<html><body>"
+    html_output = "<div>"
     lines = output.split("\n")
     for line in lines:
         html_output += f"<p>{line}</p>"
-    html_output += "</body></html>"
+    html_output += "</div>"
 
     # Return the HTML as a response
     return HTMLResponse(content=html_output, media_type="text/html")
