@@ -72,7 +72,7 @@ def get_poem(query: str):
     return FileResponse(pdf_file, filename=f'{query}.pdf', media_type="application/pdf")
 
 if __name__ == "__main__":
-    uvicorn.run(app, port=5000)
+    uvicorn.run(app, host="0.0.0.0")
     
     # query = input('Enter a word or two to make poem with: ')
     # print("<Wait for Output>")
