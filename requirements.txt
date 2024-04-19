@@ -1,0 +1,6 @@
+requests
+fastapi
+uvicorn
+logging
+json
+reportlab
