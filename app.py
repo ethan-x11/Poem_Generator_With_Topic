@@ -13,7 +13,7 @@ api_key = os.getenv("API_KEY")
 
 
 def get_data(query):
-    url = f"https://llamastudio.dev/api/{api_key}"
+    url = f"https://llamastudio.dev/api/clqcch9ka0001jv08u8wzzx94"
     data = {"input": query}
     response = requests.post(url, json=data)
     return response.json()
