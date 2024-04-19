@@ -1,5 +1,6 @@
 requests
 fastapi
 uvicorn
-logging
 reportlab
+loguru
+logtail-python
