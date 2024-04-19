@@ -47,12 +47,17 @@ def get_poem(query: str):
     logging.basicConfig(filename="log.json", level=logging.INFO)
     logging.info(json.dumps(log_data))
     logging.info("\n")
+    # Convert the output data to proper HTML format
+    html_output = "<html><body>"
+    lines = output.split("\n")
+    for line in lines:
+        html_output += f"<p>{line}</p>"
+    html_output += "</body></html>"
 
-    # Format the output as HTML
-    formatted_output = output.replace("**", "<b>").replace("\n", "<br>")
-
-    # Return the formatted output
-    return formatted_output
+    # Return the HTML as a response
+    return HTMLResponse(content=html_output, media_type="text/html")
+    # Return the PDF file as a response
+    return output
 
 
 # make get request that will take query parameter and return the output
