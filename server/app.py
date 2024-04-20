@@ -60,7 +60,7 @@ app.add_middleware(
 @app.get("/")
 def home():
     return {
-        "message": "Welcome to the PoemGeneratorWithTopic API! Use get_poem route to generate a poem and get_poem_pdf route to generate a PDF of the poem(Pass query as a parameter)."
+        "message": "Welcome to the PoemGeneratorWithTopic API! Use /get_poem route to generate a poem and /get_poem_pdf route to generate a PDF of the poem(Pass query as a parameter)."
     }
 
 @app.get("/get_poem/")
