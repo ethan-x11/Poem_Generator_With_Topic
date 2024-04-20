@@ -77,10 +77,10 @@ const HeroSection = () => {
     }
   };
 
-  const handleDownloadClick = () => {
+  const handleDownloadClick = async () => {
     if (outputRaw !== '') {
       setIsLoadingPDF(true);
-      generatePDF(query, outputRaw);
+      await generatePDF(query, outputRaw);
       setIsLoadingPDF(false);
     }
   };
