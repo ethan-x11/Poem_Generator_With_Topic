@@ -65,7 +65,7 @@ const HeroSection = () => {
   }
 
   const handleTopicChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(event.target.value);
+    setQuery(event.target.value.slice(0, 200));
   };
 
   const handleGenerateClick = async () => {
@@ -84,7 +84,6 @@ const HeroSection = () => {
       setIsLoadingPDF(false);
     }
   };
-
 
   return (
     <>
