@@ -20,6 +20,7 @@ const HeroSection = () => {
   const [out, setOut] = useState<any>();
   const [outputRaw, setOutputRaw] = useState<any>();
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingPDF, setIsLoadingPDF] = useState(false);
 
   const generatePoem = async (query: string) => {
     const url = "https://poemgeneratorwithtopic.onrender.com/get_poem_raw/";
@@ -67,7 +68,7 @@ const HeroSection = () => {
     setQuery(event.target.value);
   };
 
-  const handleGenerateClick = async  () => {
+  const handleGenerateClick = async () => {
     console.log(JSON.stringify(query))
     if (query !== '') {
       setIsLoading(true);
@@ -78,7 +79,9 @@ const HeroSection = () => {
 
   const handleDownloadClick = () => {
     if (outputRaw !== '') {
+      setIsLoadingPDF(true);
       generatePDF(query, outputRaw);
+      setIsLoadingPDF(false);
     }
   };
 
@@ -114,13 +117,19 @@ const HeroSection = () => {
                 Output:
               </div>
               <div className={style.outbox}>
-                  {out}
+                {out}
               </div>
               <button
                 className={style.button}
                 onClick={handleDownloadClick}
               >
-                Download PDF
+                {isLoadingPDF ? (
+                  <div className="animate-spin">
+                    <BiLoaderAlt />
+                  </div>
+                ) : (
+                  'Download PDF'
+                )}
               </button>
             </div>
           ) : (
