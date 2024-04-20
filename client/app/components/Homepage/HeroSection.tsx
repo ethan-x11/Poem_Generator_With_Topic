@@ -77,7 +77,7 @@ const HeroSection = () => {
   };
 
   const handleDownloadClick = () => {
-    if (query !== '' && outputRaw !== '') {
+    if (outputRaw !== '') {
       generatePDF(query, outputRaw);
     }
   };
