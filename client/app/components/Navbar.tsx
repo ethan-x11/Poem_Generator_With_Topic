@@ -14,21 +14,21 @@ type NavbarProps = {
 const style = {
     main: "fixed top-0 left-0 w-full h-12 z-20 mt-6",
     container: "container mx-auto px-4 sm:px-6 md:px-8 h-full gap-x-[2rem] flex flex-col justify-between items-center",
-    logowrap: "h-full px-16 text-2xl rounded-full flex flex-row items-center bg-[#e23832] hover:bg-opacity-80 backdrop-blur-lg drop-shadow-lg",
+    logowrap: "h-full px-16 text-2xl rounded-full flex flex-row items-center text-red-200 hover:text-white bg-red-500 hover:bg-[#e23832] backdrop-blur-lg drop-shadow-lg",
 }
 
 const Navbar = ({ onNavClick }: NavbarProps) => {
     return (
         <>
-            <div className={style.main}>
+            <nav className={style.main}>
                 <div className={style.container}>
                     <div className={style.logowrap}>
-                        <div>
+                        <Link href="/#">
                             PoemGen
-                        </div>
+                        </Link>
                     </div>
                 </div>
-            </div>
+            </nav>
         </>
     );
 };

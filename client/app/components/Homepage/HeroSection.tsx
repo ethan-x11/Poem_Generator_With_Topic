@@ -22,6 +22,19 @@ const HeroSection = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingPDF, setIsLoadingPDF] = useState(false);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await axios.get("https://poemgeneratorwithtopic.onrender.com/");
+        // Do something with the data
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const generatePoem = async (query: string) => {
     const url = "https://poemgeneratorwithtopic.onrender.com/get_poem_raw/";
     axios.defaults.headers.post["Content-Type"] =
@@ -112,9 +125,9 @@ const HeroSection = () => {
 
           {out ? (
             <div className={`${style.outputsection}`}>
-              <div className={style.subheading}>
+              <h2 className={style.subheading}>
                 Output:
-              </div>
+              </h2>
               <div className={style.outbox}>
                 {out}
               </div>
@@ -132,7 +145,7 @@ const HeroSection = () => {
               </button>
             </div>
           ) : (
-            <div className={style.hide}>Generate to See Output</div>
+            <h3 className={style.hide}>Generate to See Output</h3>
           )}
         </div>
       </div>
