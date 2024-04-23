@@ -83,33 +83,6 @@ def get_poem(query: str):
     # Return the HTML as a response
     return HTMLResponse(content=html_output, media_type="text/html")
 
-# make get request that will take query parameter and return the output
-@app.get("/get_poem_pdf/")
-def get_poem(query: str):
-    logger.info("/get_poem_pdf/")
-    output = get_data(query)
-
-    try:
-        # Create a PDF file
-        pdf_file = "./output.pdf"
-        c = canvas.Canvas(pdf_file)
-        c.setFont("Helvetica", 12)  # Set the font and size
-        lines = output.split("\n")  # Split the output into lines
-        y = 750  # Initial y-coordinate for drawing text
-        for line in lines:
-            c.drawString(100, y, line)  # Write each line to the PDF
-            y -= 20  # Decrease the y-coordinate for the next line
-        c.save()
-        log_data = {"query": query, "output": output}
-        logger.info(json.dumps(log_data))
-    except:
-        log_data = {"query": query, "output": output}
-        logger.error(json.dumps(log_data))
-        return HTMLResponse(content="<div><p>Sorry, there was an error in generating the poem.</p></div>", media_type="text/html")
-
-    # Return the PDF file as a response
-    return FileResponse(pdf_file, filename=f"{query}.pdf", media_type="application/pdf")
-
 @app.post("/get_poem_raw/")
 def get_poem(request: schemas.Load):
     logger.info("/get_poem_raw/")
